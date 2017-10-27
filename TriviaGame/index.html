@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Connor's Trivia Game</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+</head>
+<body>
+
+<div class ="wrapper">
+	
+	<h1>Connor's Trivia Game</h1>
+
+	<div class = "timer"></div>
+
+	<form id = "trivia" name = "trivia">
+
+	<input id ="start-button" type="button" value ="Start!"</button>
+
+	<p>1.) Which NFL team has the most Super Bowls with 6?</p>
+	<input type="radio" id="multi-choice" name="question1" value="New England Patriots"> New England Patriots<br>
+	<input type="radio" id="multi-choice" name="question1" value="Dallas Cowboys"> Dallas Cowboys<br>
+	<input type="radio" id="multi-choice" name="question1" value="Pittsburgh Steelers"> Pittsburgh Steelers<br>
+	<input type="radio" id="multi-choice" name="question1" value="Carolina Panthers"> Carolina Panthers<br>
+
+	<p>2.) In the TV show "Mad Men", what is Don Drapers real birthname?</p>
+	<input type="radio" id="multi-choice" name="question2" value="Jon Hamm"> Jon Hamm<br>
+	<input type="radio" id="multi-choice" name="question2" value="Dick Whitman"> Dick Whitman<br>
+	<input type="radio" id="multi-choice" name="question2" value="John Bacon"> John Bacon<br>
+
+	<p>3.) What is the number on Geralds shirt in "Hey Arnold!"?</p>
+	<input type="radio" id="multi-choice" name="question3" value="24"> 24<br>
+	<input type="radio" id="multi-choice" name="question3" value="23"> 23<br>
+	<input type="radio" id="multi-choice" name="question3" value="99"> 99<br>
+	<input type="radio" id="multi-choice" name="question3" value="33"> 33<br>
+
+	<p>4.) What is rapper Drake's real name?</p>
+	<input type="radio" id="multi-choice" name="question4" value="Aubrey Graham"> Aubrey Graham<br>
+	<input type="radio" id="multi-choice" name="question4" value="Drizzy"> Drizzy<br>
+	<input type="radio" id="multi-choice" name="question4" value="Jimmy Brooks"> Jimmy Brooks<br>
+
+	<p>5.) Which NHL team has the most Stanley Cups?</p>
+	<input type="radio" id="multi-choice" name="question5" value="Pittsburgh Penguins"> Pittsburgh Penguins<br>
+	<input type="radio" id="multi-choice" name="question5" value="Montreal Canadians"> Montreal Canadians<br>
+	<input type="radio" id="multi-choice" name="question5" value="Detroit Red Wings"> Detroit Red Wings<br>
+	<input type="radio" id="multi-choice" name="question5" value="Boston Bruins"> Boston Bruins<br>
+
+	<p>6.) After which Super Bowl did Peyton Manning retire from the NFL?</p>
+	<input type="radio" id="multi-choice" name="question6" value="50"> 50<br>
+	<input type="radio" id="multi-choice" name="question6" value="XLI"> XLI<br>
+	<input type="radio" id="multi-choice" name="question6" value="XLIV"> XLIV<br>
+	<input type="radio" id="multi-choice" name="question6" value="XLVIII"> XLVIII<br>
+
+	<p>7.) What is Meg's full name in "Family Guy?"</p>
+	<input type="radio" id="multi-choice" name="question7" value="Megan Griffin"> Megan Griffin<br>
+	<input type="radio" id="multi-choice" name="question7" value="Morgan Griffin"> Morgan Griffin<br>
+	<input type="radio" id="multi-choice" name="question7" value="Megatron Griffin"> Megatron Griffin<br>
+
+	
+	<input id = "finished-button" type = "button" value = "Finished!" onclick = "check();">
+
+	<input id = "reset-button" type="button" value = "Play Again"</button>
+	
+	</form>
+
+	<div id = "afterFinished">
+	<p id = "numberCorrect">You Finished!! Great Job!!</p>
+	</div>
+
+
+
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+</html>
