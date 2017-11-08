@@ -1,0 +1,32 @@
+
+
+body {
+	background-image: url("assets/images/background4.png");
+	/* Thought I had the right syntax for the background image but can't seem to get it to work.*/
+	background-color: #C7FAFF;
+	text-align: center;
+	font-family: trebuchet ms;
+}
+
+h1 {
+	background-color: orange;
+	margin-left: 467px;
+	margin-right: 467px;
+}
+
+#instructions {
+	background-color: yellow;
+	margin-left: 200px; 
+	margin-right: 200px;
+}
+
+#gems {
+	background-color: black;
+	margin-left: 350px; 
+	margin-right: 350px;
+}
+.gemImage {
+	height: 90px;
+	margin: 15px;
+}
+
