@@ -1,18 +1,12 @@
+form {
+	padding: 10px;
+}
+
+.jumbotron {
+	background-color: #2f70a8;
+	color: #ffffff;
+}
+
 body {
-	font-family: 'Arvo', serif;
-	text-align: center;
-	background-image: url("../images/question-marks.jpg"); 
-	background-color: #795548;
-}
-
-.wrapper {
-	background-color: #00c4ff;
-	margin-right: 300px;
-	margin-left: 300px;
-	margin-top: 75px;
-	margin-bottom: 75px;
-}
-
-#afterFinished {
-	visibility: hidden;
+	background-image: url("../images/trains.jpg");
 }

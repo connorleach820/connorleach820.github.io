@@ -1,116 +1,76 @@
 $(document).ready(function() {
-		$("#start-button").click(function() {
-			var number = 60;
-	   		 $("#start-button").on("click", start); 
-	   		 $("#finished-button").on("click", finish)  
-	   		 $("#reset").on("click", restart);
-		
 
-		function start(){
-	    	counter = setInterval(timer, 1000);
-	    	showMe("#multi-choice");
-	    	showMe("#finished-button");
-		    hideMe("#start-button");
-		    hideMe("#reset-button");
-		    hideMe("#afterFinished");
-		}
+	var config = {
+    apiKey: "AIzaSyDdlekbalTMqUjOG4CZ2oGQqi9Z1_4iZtU",
+    authDomain: "train-hw-f436d.firebaseapp.com",
+    databaseURL: "https://train-hw-f436d.firebaseio.com",
+    projectId: "train-hw-f436d",
+    storageBucket: "train-hw-f436d.appspot.com",
+    messagingSenderId: "419213879878"
+  };
 
-		function timer(){
-	      number-- 
-	      $(".timer").html("<h2>You have " + number + " seconds remaing</h2>" );
-	      if (number == 0){
-	        alert("Times Up!")
-	        stop(); 
-	      }
-	    }
+  firebase.initializeApp(config);
 
-	    function stop(){
-	    	clearInterval(counter); 
-	    	$("#afterFinished").show();
-	    	$("#reset-button").show();
-			$("#multi-choice").hide();
-			$("#finished-button").hide();
-	    }
+  var database = firebase.database();
 
-	     function finish(){
-    	number = 1; 
-    	clearInterval(counter); 
-    	timer();
-    	}
+  $("#add-train").on("click", function() {
 
-    	function restart(){
-    	number = 60;
-    	start();
-   	    }
+  	var trainName = $("#trainNameInput").val().trim();
+  	var destination = $("#destinationInput").val().trim();
+  	var trainTime = $("#trainTimeInput").val().trim();
+  	var frequency = $("#frequencyInput").val().trim();
+
+  		database.ref().push({
+  			trainName: trainName,
+        	destination: destination,
+        	trainTime: trainTime,
+        	frequency: frequency,
+        	timeAdded: firebase.database.ServerValue.TIMESTAMP
+  		});
+
+  		$("input").val("");
+  	return false;
+
+  });
+
+  database.ref().on("child_added", function(childSnapshot) {
+
+  	trainName = childSnapshot.val().trainName;
+  	destination = childSnapshot.val().destination;
+  	trainTime = childSnapshot.val().trainTime;
+  	frequency = childSnapshot.val().frequency;
+
+  	var frequency = parseInt(frequency);
+  	var currentTime = moment();
+  	var dConverted = moment(childSnapshot.val().time, "HH:mm").subtract(1, "years");
+  	var newTrainTime = moment(dConverted).format("HH:mm");
+
+  	var tConverted = moment(newtrainTime, "HH:mm").subtract(1, "years");
+  	var tDifference = moment().diff(moment(tConverted), "minutes");
+
+  	var tRemainder  = tDifference % frequency;
+  	var minutesAway = frequency - tRemainder;
+  	var nextTrain = moment().add(minutesAway, "minutes");
+
+  $("#trainTbl").append(
+		"<tr><td id='trainNameDisplay'>" + childSnapshot.val().trainName +
+		"</td><td id='destinationDisplay'>" + childSnapshot.val().destination +
+		"</td><td id='frequencyDisplay'>" + childSnapshot.val().frequency +
+		"</td><td id='nextDisplay'>" + moment(nextTrain).format("HH:mm") +
+		"</td><td id='awayDisplay'>" + minutessAway  + " minutes until arrival" + "</td></tr>");
+  },
+
+  function(errorObject){
+    console.log("Read failed: " + errorObject.code)
 
     });
 
+
+    database.ref().orderByChild("timeAdded").limitToLast(1).on("child_added", function(snapshot) {
+     $("#trainNameDisplay").html(snapshot.val().Trainname);
+     $("#destinationDisplay").html(snapshot.val().destination);
+     $("#TraintimeDisplay").html(snapshot.val().Traintime);
+     $("#frequencyDisplay").html(snapshot.val().frequency);
+ });
+
 });
-
-
-function check() {
-
-	var question1 = document.trivia.question1.value;
-	var question2 = document.trivia.question2.value;
-	var question3 = document.trivia.question3.value;
-	var question4 = document.trivia.question4.value;
-	var question5 = document.trivia.question5.value;
-	var question6 = document.trivia.question6.value;
-	var question7 = document.trivia.question7.value;
-	var correct = 0;
-	var incorrect = 0;
-	if (question1 == "Pittsburgh Steelers") {
-		correct++;
-	}
-	else if (question1 == "New England Patriots", "Dallas Cowboys", "Carolina Panthers") {
-		incorrect++;
-	}
-
-	if (question2 == "Dick Whitman") {
-		correct++;
-	}
-	else if (question2 == "Jon Hamm", "John Bacon") {
-		incorrect++;
-	}
-
-	if (question3 == "33") {
-		correct++;
-	}
-	else if (question3 == "24", "23", "99") {
-		incorrect++;
-	}
-
-	if (question4 == "Aubrey Graham") {
-		correct++;
-	}
-	else if (question4 == "Drizzy", "Jimmy Brooks") {
-		incorrect++;
-	}
-
-	if (question5 == "Montreal Canadians") {
-		correct++;
-	}
-	else if (question5 == "Pittsburgh Penguins", "Boston Bruins", "Detroit Red Wings") {
-		incorrect++;
-	}
-
-	if (question6 == "50") {
-		correct++;
-	}
-	else if (question6 == "XLI", "XLIV", "XLVIII") {
-		incorrect++;
-	}
-
-	if (question7 == "Megatron Griffin") {
-		correct++;
-	}
-	else if (question7 == "Megan Griffin", "Morgan Griffin") {
-		incorrect++;
-	}
-
-
-
-
-	document.getElementById("afterFinished").style.visibility = "visible";
-	document.getElementById("numberCorrect").innerHTML = "You got " + correct + " correct!";
-}
