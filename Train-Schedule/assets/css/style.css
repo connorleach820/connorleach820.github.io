@@ -1,0 +1,12 @@
+form {
+	padding: 10px;
+}
+
+.jumbotron {
+	background-color: #2f70a8;
+	color: #ffffff;
+}
+
+body {
+	background-image: url("../images/trains.jpg");
+}
